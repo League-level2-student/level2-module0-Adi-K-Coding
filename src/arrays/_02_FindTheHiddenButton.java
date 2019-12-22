@@ -39,7 +39,6 @@ public class _02_FindTheHiddenButton implements ActionListener {
 		String num = JOptionPane.showInputDialog("Type in a positive number");
 		int number = Integer.parseInt(num);
 		// 4. Initialize the array of JButtons to be the size of the int created in step
-		// 3
 		buttons = new JButton[number];
 		// 5. Make a for loop to iterate through the JButton array
 		// 6. initialize each JButton in the array
@@ -60,14 +59,21 @@ window.setVisible(true);
 JOptionPane.showMessageDialog(null,"Directions: Text will flash randomly on one of the buttons\nClick on the button which the word flashes on");
 		// 13. initialize the hiddenButton variable to a random number less than the int
 		// created in step 3
+Random r = new Random();
+hiddenButton = r.nextInt(number);
 
 		// 14. Set the text of the JButton located at hiddenButton to "ME"
-
+buttons[hiddenButton].setText("ME");
 		// 15. Use Thread.sleep(1000); to pause the program.
 		// Surround it with a try/catch - use Eclipse helper for this
-
+try {
+	Thread.sleep(50);
+} catch (InterruptedException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
 		// 16. Set the text of the JButton located at hiddenButton to be blank.
-
+buttons[hiddenButton].setText("");
 	}
 
 	@Override
@@ -75,7 +81,11 @@ JOptionPane.showMessageDialog(null,"Directions: Text will flash randomly on one 
 		JButton buttonClicked = (JButton) e.getSource();
 
 		// 17. if the hiddenButton is clicked, tell the user that they win.
-
+if(buttonClicked==buttons[hiddenButton]) {
+	JOptionPane.showMessageDialog(null, "You Win!");
+}else {
+	JOptionPane.showMessageDialog(null, "Try Again.");
+}
 		// 18. else tell them to try again
 	}
 }
